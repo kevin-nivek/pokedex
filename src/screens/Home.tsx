@@ -1,14 +1,27 @@
 import { useEffect, useState } from 'react';
-import { ImageBackground, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { Pokedex } from '../components/Pokedex';
 import { PokemonOfDay } from '../components/PokemonOfDay';
-import api from '../service/api';
 import { PokeFavoritos } from '../components/PokeFavoritos';
+import { LerFile } from '../functions/FIleEitor';
 
 export function Home(){
   // const {pokemons, setpokemons} = useState(['Hello There ⚔️'])
-  
-  
+  const[loading, setLoading] = useState(true)
+  const[listaFavo, setListaFavo] = useState({})
+  const[idsFavoritos, setIdsFavoritos] = useState([])
+
+  const atualizaListas = async () =>{
+    const favoritos = await LerFile()
+    setListaFavo(favoritos)
+    setIdsFavoritos(Object.keys(favoritos))
+    setLoading(false)
+    }
+   
+  useEffect( ()=>  {
+    atualizaListas()
+  },[])
+
   return (
     <>
   
@@ -19,12 +32,24 @@ export function Home(){
           <ScrollView
           className='flex-row'
           horizontal> 
-            <PokemonOfDay/>
-            <PokeFavoritos/>
+            <PokemonOfDay
+               atualizaFavo={atualizaListas}
+               firstLoad={loading}
+              idsFavo={idsFavoritos}
+            />
+            <PokeFavoritos
+              atualizaFavo={atualizaListas}
+              firstLoad={loading}
+              listaFavo={listaFavo}
+            />
           </ScrollView>
         </View>
 
-      <Pokedex />
+      <Pokedex
+        atualizaFavo={atualizaListas}
+        firstLoad={loading}
+        idsFavo={idsFavoritos}
+      />
     </View>
   </>  
   );

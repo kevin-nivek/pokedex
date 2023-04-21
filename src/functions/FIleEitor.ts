@@ -14,9 +14,11 @@ type Pokemon = {
 }
 export async function LerFile(){  
     try {
-      const jsonValue = await AsyncStorage.getItem('@Lista_favoritos')
-
-      return jsonValue != null ? JSON.parse(jsonValue) : null;
+      const keys =  await AsyncStorage.getAllKeys()
+      if( keys.includes('@Lista_favoritos')){
+        const jsonValue = await AsyncStorage.getItem('@Lista_favoritos')
+        return jsonValue != null ? JSON.parse(jsonValue) : null;
+      }else return {}
     } catch(e) {
       // error reading value
     }
