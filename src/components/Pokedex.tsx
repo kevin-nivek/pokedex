@@ -107,53 +107,15 @@ export function Pokedex({atualizaFavo, idsFavo } :Props){
   return (
     <View className='flex-1 mb-4'>
       <Filtro setFilter={searchType} typeSelected={typeSearch} />
-      {/* <View className='mb-2 flex-row px-4 justify-between z-20'>
-        <Text className='text-pokeName pl-2 text-white'>Pokedex</Text>
-        <TouchableOpacity
-          onPress={() => setShowFilter(!showFilter) }
-        >
-          <Image className='w-[50px] h-[50px]' source={require('../assets/ultraball-img.png')}/>
-        </TouchableOpacity>
-      </View>
 
-      <View 
-        style={{ display:showFilter? 'flex': 'none' }}
-        className='w-[100%] h-[90%] z-10 absolute mt-8  justify-center items-center'
-      >
-        <View className='items-center justify-center w-[95%]  bg-gray-500 rounded-lg'> 
-          <ScrollView
-            contentContainerStyle={{paddingHorizontal:4}}
-          >
-            <View className='mt-2 flex-wrap w-[100%] flex-row'>
-              {
-                list_icons.map((key, i) =>{
-                  return (
-                    <View key={key.valor}>
-                      <TouchableOpacity 
-                        style={{borderWidth: key.valor==typeSearch? 2 :0, borderColor: 'red' , borderRadius: 25 }}
-                        className='mx-2 my-4 items-center justify-center w-[100]'
-                        onPress={() =>searchType(key.valor)}
-                        >
-                        <View>{key.icon}</View>
-                        <Text className='capitalize text-m pb-1 text-white'>{key.nome}</Text> 
-                      </TouchableOpacity>
-                    </View>
-                  )
-                })
-              }
-            </View>
-          </ScrollView>
-        </View>
-      </View> */}
-      
       <FlatList  
       style={{display: typeSearch==-1 ? 'flex': 'none'}}
       className='relative'
       data={pokemons}
       keyExtractor={poke => `${poke.id}-${offset}`}
       renderItem={ (item) =>( <PokemonRow key={ `${item.item.id}-${item.item.name}`} poke={item.item} 
-         favorito={idsFavo.indexOf(`${item.item.id}`)!=-1}
-         atualiza={atualizaFavo}
+        favorito={idsFavo.indexOf(`${item.item.id}`)!=-1}
+        atualiza={atualizaFavo}
         />)}
       onEndReached={loading ? null : () => { 
                       setLoading(true);
