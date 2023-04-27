@@ -28,11 +28,11 @@ export async function LerFile(){
   let list= oldList != null ? oldList : {}
   list[pokemon.id] = pokemon;
     try {
-      await AsyncStorage.setItem('@Lista_favoritos', JSON.stringify(list))
+        AsyncStorage.setItem('@Lista_favoritos', JSON.stringify(list))
     } catch (e) {
       // saving error
     }
-  return await  LerFile()
+  return list
 }
 
 
@@ -42,10 +42,10 @@ export async function DeleteFile(pokemon: Pokemon){
   let list= oldList != null ? oldList : {}
   delete list[pokemon.id] 
     try {
-      await AsyncStorage.setItem('@Lista_favoritos', JSON.stringify(list))
+      AsyncStorage.setItem('@Lista_favoritos', JSON.stringify(list))
     } catch (e) {
       // saving error
     }
-  return await LerFile()
+  return list
 }
 
