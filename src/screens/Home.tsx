@@ -11,15 +11,20 @@ export function Home(){
   const[listaFavo, setListaFavo] = useState({})
   const[idsFavoritos, setIdsFavoritos] = useState([])
 
-  const atualizaListas = async () =>{
-    const favoritos = await LerFile()
+  const atualizaListas = async (favoritos) =>{
     setListaFavo(favoritos)
     setIdsFavoritos(Object.keys(favoritos))
-    setLoading(false)
     }
+
+    const getListaFavo = async () =>{
+      const favoritos = await LerFile()
+      atualizaListas(favoritos)
+      setLoading(false)
+
+      }
    
   useEffect( ()=>  {
-    atualizaListas()
+    getListaFavo()
   },[])
 
   return (
