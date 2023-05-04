@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.kevinmachado.pokedex_mobile"
     },
     "web": {
       "favicon": "./src/assets/icon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "771412b2-168d-4ccf-baa2-6b808fb7b44a"
+      }
     }
   }
 }

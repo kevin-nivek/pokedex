@@ -22,7 +22,7 @@ export function PokeFavoritos({atualizaFavo, listaFavo, firstLoad } :Props){
         text-[20px] font-bold
         "  
         >
-          {Object.keys(listaFavo).length -3   } Pokemons Favoritos  
+          {Object.keys(listaFavo).length  } Pokemons Favoritos  
         </Text>
       </View>
    
@@ -32,7 +32,7 @@ export function PokeFavoritos({atualizaFavo, listaFavo, firstLoad } :Props){
       {firstLoad ?
         <ActivityIndicator size={'large'} color={"#0000ff"} className='my-4 '></ActivityIndicator> 
         : 
-        Object.keys(listaFavo).length > 3 ?  Object.keys(listaFavo).map( (id: String)=>{
+        Object.keys(listaFavo).length > 0 ?  Object.keys(listaFavo).map( (id: String)=>{
           const pokemon = listaFavo[`${id}`]
           return (
             <View key={id}>
